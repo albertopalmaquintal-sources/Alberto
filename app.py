@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# Configuración de la página
+# ConfiguraciÃ³n de la pÃ¡gina
 st.set_page_config(page_title="Dashboard de Ventas", layout="wide")
 
-st.title("?? Dashboard de Análisis de Ventas")
+st.title("?? Dashboard de AnÃ¡lisis de Ventas")
 
 # 1. Cargar Datos (Sustituye con tu archivo .csv)
 @st.cache_data
@@ -15,7 +15,7 @@ def load_data():
         'Fecha': pd.date_range(start='2023-01-01', periods=100),
         'Producto': ['A', 'B', 'C', 'D'] * 25,
         'Ventas': [100, 150, 200, 250] * 25,
-        'Ciudad': ['Mérida', 'Valladolid', 'Tizimín', 'Progreso'] * 25,
+        'Ciudad': ['MÃ©rida', 'Valladolid', 'TizimÃ­n', 'Progreso'] * 25,
         'lat': [20.967, 20.690, 21.142, 21.283] * 25,
         'lon': [-89.623, -88.201, -88.149, -89.663] * 25
     })
@@ -37,7 +37,7 @@ df_selection = df[df["Ciudad"].isin(ciudad_selected)]
 st.subheader("Datos Filtrados")
 st.dataframe(df_selection)
 
-# --- GRÁFICAS (Requisito 2: Al menos 3) ---
+# --- GRÃFICAS (Requisito 2: Al menos 3) ---
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -46,7 +46,7 @@ with col1:
     st.plotly_chart(fig_bar, use_container_width=True)
 
 with col2:
-    st.markdown("### Proporción por Ciudad")
+    st.markdown("### ProporciÃ³n por Ciudad")
     fig_pie = px.pie(df_selection, values='Ventas', names='Ciudad')
     st.plotly_chart(fig_pie, use_container_width=True)
 
@@ -56,5 +56,5 @@ with col3:
     st.plotly_chart(fig_line, use_container_width=True)
 
 # --- MAPA (Requisito 3) ---
-st.subheader("?? Ubicación de Ventas en Yucatán")
+st.subheader("?? UbicaciÃ³n de Ventas en YucatÃ¡n")
 st.map(df_selection)
